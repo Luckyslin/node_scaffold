@@ -3,8 +3,15 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 Vue.use(VueRouter)
+const files = require.context('@/router/modules', true, /.js$/)
 
-const routes = [
+const asyncRoutes = files.keys().map(key => {
+  console.log(key)
+  const page = require('@/router/modules' + key.replace('.', ''))
+
+  return page.default
+})
+const constantRoutes = [
   {
     path: '/',
     name: 'home',
@@ -18,10 +25,12 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   }
+
 ]
 
 const router = new VueRouter({
-  routes
-})
+  routes: [...constantRoutes, ...asyncRoutes]
+}
+)
 
 export default router
