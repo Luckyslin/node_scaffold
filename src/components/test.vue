@@ -1,21 +1,19 @@
 <template>
-  <div class="login">
-    <h1>{{ msg }}</h1>
-    <h1>{{ msg }}</h1>
+  <div class="test">
     <h1>{{ msg }}</h1>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'login',
+    name: 'test',
 
     components: {
     },
     mixins: [],
     data() {
       return {
-        msg: "logi2"
+        msg: "test"
       }
     },
     created() {
@@ -34,5 +32,5 @@
 </script>
 
 <style scoped>
-  .login {}
+  .test {}
 </style>
